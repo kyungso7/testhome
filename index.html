@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>월간 CMDS - 모집 페이지</title>
+  <style>
+    :root{
+      --mint:#12c7b5;
+      --mint-dark:#0ea99a;
+      --navy:#0f2240;
+      --text:#1b2b45;
+      --sub:#7d8aa5;
+      --line:#e8edf4;
+      --bg:#ffffff;
+      --chip:#e9fbf8;
+      --soft:#f5f7fb;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Pretendard","Noto Sans KR",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    .container{
+      width:min(980px, 92%);
+      margin:0 auto;
+    }
+
+    /* Header */
+    header{
+      height:92px;
+      border-bottom:1px solid #f0f2f7;
+      display:flex;
+      align-items:center;
+    }
+    .header-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+    }
+    .logo{
+      font-weight:800;
+      font-size:38px;
+      letter-spacing:-0.5px;
+      color:var(--navy);
+    }
+    .logo .mint{color:var(--mint)}
+    .btn{
+      border:none;
+      background:var(--mint);
+      color:white;
+      border-radius:14px;
+      padding:14px 24px;
+      font-size:20px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn:hover{background:var(--mint-dark); transform:translateY(-1px)}
+    .btn.small{font-size:18px; padding:12px 20px; border-radius:12px;}
+
+    /* Hero */
+    .hero{
+      text-align:center;
+      padding:72px 0 64px;
+    }
+    .chip-row{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-bottom:26px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      background:var(--chip);
+      color:#0aa99a;
+      border-radius:999px;
+      padding:10px 18px;
+      font-weight:700;
+      font-size:22px;
+    }
+    .round{
+      display:inline-block;
+      color:var(--mint);
+      font-size:44px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0;
+      font-size:74px;
+      line-height:1.12;
+      letter-spacing:-1px;
+      color:var(--navy);
+    }
+    .desc{
+      margin:20px auto 28px;
+      font-size:50px;
+      line-height:1.32;
+      letter-spacing:-0.6px;
+      font-weight:800;
+      max-width:900px;
+      color:#243755;
+      word-break:keep-all;
+    }
+    .date-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      background:var(--soft);
+      border-radius:999px;
+      padding:14px 28px;
+      font-size:32px;
+      font-weight:700;
+      color:#2d3f5e;
+      margin-bottom:30px;
+    }
+
+    /* Countdown */
+    .countdown{
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      gap:18px;
+      margin:8px 0 28px;
+      flex-wrap:wrap;
+    }
+    .time-box{
+      min-width:130px;
+    }
+    .num{
+      font-size:82px;
+      line-height:1;
+      color:var(--mint);
+      font-weight:800;
+      letter-spacing:-1px;
+    }
+    .label{
+      margin-top:8px;
+      color:#9aa7be;
+      font-size:22px;
+      font-weight:700;
+      letter-spacing:0.8px;
+    }
+    .colon{
+      font-size:56px;
+      color:#c3ccda;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    .hero .btn{
+      margin-top:8px;
+      padding:22px 48px;
+      font-size:38px;
+      border-radius:22px;
+    }
+
+    /* Section */
+    .section{
+      padding:56px 0 90px;
+    }
+    .section-title{
+      text-align:center;
+      margin-bottom:28px;
+    }
+    .section-title .kicker{
+      color:var(--mint);
+      font-weight:800;
+      font-size:36px;
+      margin-bottom:8px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:62px;
+      color:var(--navy);
+      letter-spacing:-1px;
+    }
+    .underline{
+      width:76px;height:5px;border-radius:3px;background:var(--mint);
+      margin:14px auto 0;
+    }
+
+    .agenda{
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:22px 24px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      background:#fff;
+    }
+    .badge{
+      width:48px;height:48px;border-radius:999px;
+      background:var(--chip);
+      display:grid;place-items:center;
+      color:var(--mint-dark);
+      font-weight:800;
+      font-size:28px;
+      flex:none;
+    }
+    .agenda p{
+      margin:0;
+      font-size:36px;
+      line-height:1.35;
+      color:#0f2342;
+      font-weight:700;
+      word-break:keep-all;
+    }
+
+    @media (max-width:900px){
+      .logo{font-size:28px}
+      .btn.small{font-size:15px}
+      .chip{font-size:15px}
+      .round{font-size:28px}
+      h1{font-size:48px}
+      .desc{font-size:30px}
+      .date-pill{font-size:20px}
+      .num{font-size:58px}
+      .label{font-size:14px}
+      .hero .btn{font-size:24px; padding:16px 28px}
+      .section-title .kicker{font-size:22px}
+      .section-title h2{font-size:40px}
+      .agenda p{font-size:22px}
+      .badge{width:36px;height:36px;font-size:20px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-wrap">
+      <div class="logo"><span class="mint">월간</span> CMDS</div>
+      <a href="#apply" class="btn small">멤버십 신청 →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="chip-row">
+        <span class="chip">◎ 월간 CMDS</span>
+        <span class="chip">모집 중</span>
+      </div>
+
+      <div class="round">20회차</div>
+      <h1>수집의 기술</h1>
+      <div class="desc">사라지기 전에 잡고, 쓸모 있게 거르고,<br>필요할 때 되찾기</div>
+
+      <div class="date-pill">📅 2026.09.03(목) 19:30 ~ 22:30</div>
+
+      <div class="countdown" id="countdown">
+        <div class="time-box">
+          <div class="num" id="days">00</div>
+          <div class="label">DAYS</div>
+        </div>
+        <div class="colon">:</div>
+        <div class="time-box">
+          <div class="num" id="hours">00</div>
+          <div class="label">HRS</div>
+        </div>
+        <div class="colon">:</div>
+        <div class="time-box">
+          <div class="num" id="minutes">00</div>
+          <div class="label">MIN</div>
+        </div>
+        <div class="colon">:</div>
+        <div class="time-box">
+          <div class="num" id="seconds">00</div>
+          <div class="label">SEC</div>
+        </div>
+      </div>
+
+      <a class="btn" id="apply" href="#">지금 멤버십 신청하기 →</a>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">
+        <div class="kicker">이번 회차 주제</div>
+        <h2>진행 내용</h2>
+        <div class="underline"></div>
+      </div>
+
+      <div class="agenda">
+        <div class="badge">1</div>
+        <p>Plaud Note 극한으로 활용하는 비법(직접 개발한 앱 소개 및 실습)</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 이벤트 시작 시간 설정 (로컬 시간)
+    const targetDate = new Date("2026-09-03T19:30:00");
+
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
+
+    function pad(n){ return String(n).padStart(2, "0"); }
+
+    function updateCountdown(){
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if(diff <= 0){
+        elDays.textContent = "00";
+        elHours.textContent = "00";
+        elMinutes.textContent = "00";
+        elSeconds.textContent = "00";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (3600 * 24));
+      const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      elDays.textContent = pad(days);
+      elHours.textContent = pad(hours);
+      elMinutes.textContent = pad(minutes);
+      elSeconds.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
